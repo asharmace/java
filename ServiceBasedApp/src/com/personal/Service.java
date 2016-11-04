@@ -7,6 +7,7 @@ abstract class Service implements IService
 	private Thread t;
 	private boolean started;
 	private boolean done;
+	private IService downStream;
 
 	Service()
 	{
