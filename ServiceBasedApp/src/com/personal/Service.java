@@ -1,18 +1,21 @@
 package com.personal;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 abstract class Service implements IService
 {
 	private Thread t;
 	private boolean started;
-	private boolean done;
-	private IService downStream;
+	private volatile boolean done;
+	protected IService downStream;
+	protected Queue<Data> queue;
 
 	Service()
 	{
 		started = false;
 		done = false;
+		queue = new LinkedList<Data>();
 	}
 
 	abstract void process(Data d);
@@ -21,9 +24,18 @@ abstract class Service implements IService
 	{
 		while (!done)
 		{
-			// Lock and get data from Queue
-			Data d = new Data();
-			process(d);
+			
+			Data d;
+			synchronized(queue)
+			{
+
+				if(!queue.isEmpty())
+				{
+					d = queue.poll();
+					process(d);				
+				}
+			}
+			// Put sleep
 		}
 	}
 
@@ -51,7 +63,10 @@ abstract class Service implements IService
 
 	public void callBack(Data d)
 	{
-		// Lock and insert into Queue;
+		synchronized(queue)
+		{
+			queue.add(d);			
+		}
 	}
 
 }
