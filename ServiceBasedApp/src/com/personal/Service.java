@@ -3,11 +3,11 @@ package com.personal;
 import java.util.LinkedList;
 import java.util.Queue;
 
-abstract class Service implements IService
+class Service implements IService
 {
-	private Thread t;
-	private boolean started;
-	private volatile boolean done;
+	protected Thread t;
+	protected boolean started;
+	protected volatile boolean done;
 	protected IService downStream;
 	protected Queue<Data> queue;
 
@@ -18,24 +18,32 @@ abstract class Service implements IService
 		queue = new LinkedList<Data>();
 	}
 
-	abstract void process(Data d);
+	void process(Data d)
+	{
+		downStream.callBack(d);
+	}
 
 	public void run()
 	{
 		while (!done)
 		{
-			
 			Data d;
 			synchronized(queue)
 			{
-
 				if(!queue.isEmpty())
 				{
 					d = queue.poll();
 					process(d);				
 				}
 			}
-			// Put sleep
+			try
+			{
+				Thread.sleep(1);
+			}
+			catch(InterruptedException ie)
+			{
+				ie.printStackTrace();
+			}
 		}
 	}
 
