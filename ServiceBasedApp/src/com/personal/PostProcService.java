@@ -14,8 +14,8 @@ class PostProcService extends Service
 		try
 		{
 			w1 = new PrintWriter("../data/outf1.txt", "UTF-8");
-			w2 = new PrintWriter("../data/outf1.txt", "UTF-8");
-			w3 = new PrintWriter("../data/outf1.txt", "UTF-8");
+			w2 = new PrintWriter("../data/outf2.txt", "UTF-8");
+			w3 = new PrintWriter("../data/outf3.txt", "UTF-8");
 		}
 		catch (Exception e)
 		{
@@ -31,17 +31,17 @@ class PostProcService extends Service
 			{
 				case INT :
 				{
-					w1.write(String.valueOf(d.idata));
+					w1.write(String.valueOf(d.idata) + "\n");
 					break;
 				}
 				case DOUBLE:
 				{
-					w2.write(String.valueOf(d.ddata));
+					w2.write(String.valueOf(d.ddata) + "\n");
 					break;
 				}
 				case STRING :
 				{
-					w3.write(d.sdata);
+					w3.write(d.sdata + "\n");
 					break;
 				}
 			}

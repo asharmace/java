@@ -14,7 +14,7 @@ class ExecService extends Service
 		}
 		else if (d.dataType == DataType.STRING)
 		{
-			d.sdata = d.sdata + d.sdata;
+			d.sdata = "\"" + d.sdata + "\"";
 		}
 		else if (d.dataType == DataType.NONE)
 		{

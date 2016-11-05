@@ -1,22 +1,28 @@
 package com.personal;
 
 import java.util.Scanner;
+import java.io.File;
 
 class ReaderService extends Service
 {
 
-	private final String f1 = new String("../data/f1.txt");
-	private final String f2 = new String("../data/f2.txt");
-	private final String f3 = new String("../data/f3.txt");
+	private final String str1 = new String("../data/f1.txt");
+	private final String str2 = new String("../data/f2.txt");
+	private final String str3 = new String("../data/f3.txt");
 
 	public void readData()
 	{
-		Scanner sc1 = new Scanner(f1);
-		Scanner sc2 = new Scanner(f2);
-		Scanner sc3 = new Scanner(f3);
+
+		File f1 = new File(str1);
+		File f2 = new File(str2);
+		File f3 = new File(str3);
+
 		Data d;
 		try
 		{
+			Scanner sc1 = new Scanner(f1);
+			Scanner sc2 = new Scanner(f2);
+			Scanner sc3 = new Scanner(f3);
 			while(true)
 			{
 				if (sc1.hasNext())
@@ -27,7 +33,7 @@ class ReaderService extends Service
 					d.dataType = DataType.INT;
 					this.callBack(d);
 				}
-				if (sc1.hasNext())
+				if (sc2.hasNext())
 				{
 					d = new Data();
 					d.ddata = sc2.nextDouble();
@@ -35,11 +41,10 @@ class ReaderService extends Service
 					d.dataType = DataType.DOUBLE;
 					callBack(d);
 				}
-				if (sc1.hasNext())
+				if (sc3.hasNext())
 				{
 					d = new Data();
 					d.sdata = sc3.nextLine();
-					sc3.nextLine();
 					d.dataType = DataType.STRING;
 					callBack(d);
 				}
