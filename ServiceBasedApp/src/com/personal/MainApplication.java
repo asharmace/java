@@ -17,7 +17,7 @@ class MainApplication
 
 		try
 		{
-			Thread.sleep(5000);
+			Thread.sleep(500);
 		}
 		catch(Exception e)
 		{
@@ -27,6 +27,10 @@ class MainApplication
 		reader.stop();
 		exec.stop();
 		post.stop();
+
+		post.join();
+		exec.join();
+		reader.join();
 	}
 
 	public static void main(String []args)

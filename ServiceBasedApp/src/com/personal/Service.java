@@ -59,6 +59,18 @@ class Service implements IService
 		done = true;
 	}
 
+	public void join()
+	{
+		try
+		{
+			t.join();
+		}
+		catch(InterruptedException ie)
+		{
+			ie.printStackTrace();
+		}
+	}
+
 	public boolean isRunning()
 	{
 		return started && !done;
@@ -76,7 +88,7 @@ class Service implements IService
 			queue.add(d);			
 		}
 	}
-	
+
 	public void setDownStream(IService is)
 	{
 		downStream = is;
