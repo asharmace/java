@@ -31,7 +31,7 @@ class ReaderService extends Service
 					d.idata = sc1.nextInt();
 					sc1.nextLine();
 					d.dataType = DataType.INT;
-					this.callBack(d);
+					this.notifyListeners(d);
 				}
 				if (sc2.hasNext())
 				{
@@ -39,14 +39,14 @@ class ReaderService extends Service
 					d.ddata = sc2.nextDouble();
 					sc2.nextLine();
 					d.dataType = DataType.DOUBLE;
-					callBack(d);
+					notifyListeners(d);
 				}
 				if (sc3.hasNext())
 				{
 					d = new Data();
 					d.sdata = sc3.nextLine();
 					d.dataType = DataType.STRING;
-					callBack(d);
+					notifyListeners(d);
 				}
 				if (!sc1.hasNext() && !sc2.hasNext() && !sc3.hasNext())
 				{

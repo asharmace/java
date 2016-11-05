@@ -23,6 +23,6 @@ class ExecService extends Service
 			return;
 		}
 
-		downStream.callBack(d);
+		notifyListeners(d);
 	}
 }

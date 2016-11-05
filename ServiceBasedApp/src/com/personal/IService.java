@@ -8,7 +8,8 @@ interface IService extends Runnable
 	public void join();
 	public boolean isRunning();
 	public boolean isStopped();
+	public void notifyListeners(Data d);
+	public void register(IService is);
 	public void callBack(Data d);
-	public void setDownStream(IService is);
 
 }

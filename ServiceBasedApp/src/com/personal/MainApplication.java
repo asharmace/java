@@ -8,8 +8,8 @@ class MainApplication
 		IService exec = new ExecService();
 		IService post = new PostProcService();
 
-		reader.setDownStream(exec);
-		exec.setDownStream(post);
+		reader.register(exec);
+		exec.register(post);
 
 		post.start();
 		exec.start();

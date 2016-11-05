@@ -1,5 +1,6 @@
 package com.personal;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -10,17 +11,19 @@ class Service implements IService
 	protected volatile boolean done;
 	protected IService downStream;
 	protected Queue<Data> queue;
+	protected ArrayList<IService> listeners;
 
 	Service()
 	{
 		started = false;
 		done = false;
 		queue = new LinkedList<Data>();
+		listeners = new ArrayList<IService>();
 	}
 
 	void process(Data d)
 	{
-		downStream.callBack(d);
+		notifyListeners(d);
 	}
 
 	public void run()
@@ -81,6 +84,12 @@ class Service implements IService
 		return done;
 	}
 
+	public void notifyListeners(Data d)
+	{
+		for (IService listener: listeners)
+			listener.callBack(d);
+	}
+
 	public void callBack(Data d)
 	{
 		synchronized(queue)
@@ -89,8 +98,8 @@ class Service implements IService
 		}
 	}
 
-	public void setDownStream(IService is)
+	public void register(IService is)
 	{
-		downStream = is;
+		listeners.add(is);
 	}
 }
