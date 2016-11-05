@@ -76,5 +76,9 @@ class Service implements IService
 			queue.add(d);			
 		}
 	}
-
+	
+	public void setDownStream(IService is)
+	{
+		downStream = is;
+	}
 }

@@ -15,33 +15,43 @@ class ReaderService extends Service
 		Scanner sc2 = new Scanner(f2);
 		Scanner sc3 = new Scanner(f3);
 		Data d;
-		while(true)
+		try
 		{
-			if (sc1.hasNext())
+			while(true)
 			{
-				d = new Data();
-				d.idata = Integer.parseInt(sc1.nextLine());
-				d.dataType = DataType.INT;
-				this.callBack(d);
+				if (sc1.hasNext())
+				{
+					d = new Data();
+					d.idata = sc1.nextInt();
+					sc1.nextLine();
+					d.dataType = DataType.INT;
+					this.callBack(d);
+				}
+				if (sc1.hasNext())
+				{
+					d = new Data();
+					d.ddata = sc2.nextDouble();
+					sc2.nextLine();
+					d.dataType = DataType.DOUBLE;
+					callBack(d);
+				}
+				if (sc1.hasNext())
+				{
+					d = new Data();
+					d.sdata = sc3.nextLine();
+					sc3.nextLine();
+					d.dataType = DataType.STRING;
+					callBack(d);
+				}
+				if (!sc1.hasNext() && !sc2.hasNext() && !sc3.hasNext())
+				{
+					break;
+				}
 			}
-			if (sc1.hasNext())
-			{
-				d = new Data();
-				d.ddata = Double.parseDouble(sc2.nextLine());
-				d.dataType = DataType.DOUBLE;
-				callBack(d);
-			}
-			if (sc1.hasNext())
-			{
-				d = new Data();
-				d.sdata = sc3.nextLine();
-				d.dataType = DataType.STRING;
-				callBack(d);
-			}
-			if (!sc1.hasNext() && !sc2.hasNext() && !sc3.hasNext())
-			{
-				break;
-			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
 
