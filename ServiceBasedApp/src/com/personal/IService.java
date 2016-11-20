@@ -1,6 +1,6 @@
 package com.personal;
 
-interface IService extends Runnable
+interface IService extends Runnable, IListener
 {
 	public void run();
 	public void start();
@@ -9,7 +9,5 @@ interface IService extends Runnable
 	public boolean isRunning();
 	public boolean isStopped();
 	public void notifyListeners(Data d);
-	public void register(IService is);
-	public void callBack(Data d);
-
+	public void register(IListener is);
 }

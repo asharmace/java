@@ -11,14 +11,14 @@ class Service implements IService
 	protected volatile boolean done;
 	protected IService downStream;
 	protected Queue<Data> queue;
-	protected ArrayList<IService> listeners;
+	protected ArrayList<IListener> listeners;
 
 	Service()
 	{
 		started = false;
 		done = false;
 		queue = new LinkedList<Data>();
-		listeners = new ArrayList<IService>();
+		listeners = new ArrayList<IListener>();
 	}
 
 	void process(Data d)
@@ -86,7 +86,7 @@ class Service implements IService
 
 	public void notifyListeners(Data d)
 	{
-		for (IService listener: listeners)
+		for (IListener listener: listeners)
 			listener.callBack(d);
 	}
 
@@ -98,7 +98,7 @@ class Service implements IService
 		}
 	}
 
-	public void register(IService is)
+	public void register(IListener is)
 	{
 		listeners.add(is);
 	}
