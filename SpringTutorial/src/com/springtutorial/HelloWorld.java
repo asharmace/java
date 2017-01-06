@@ -12,4 +12,14 @@ public class HelloWorld {
 	{
 		System.out.println("Your message is : " +message);
 	}
+	
+	public void init()
+	{
+		System.out.println("Inside init method");
+	}
+	
+	public void destroy()
+	{
+		System.out.println("Inside destroy method");
+	}
 }
