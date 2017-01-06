@@ -10,6 +10,6 @@ public class HelloWorld {
 	
 	public void getMessage()
 	{
-		System.out.println("Your message is " +message);
+		System.out.println("Your message is : " +message);
 	}
 }
