@@ -1,1 +1,2 @@
-export Guava_Home
+export Guava_Home=./lib
+export CLASSPATH=$CLASSPATH:./lib
