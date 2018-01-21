@@ -5,11 +5,11 @@ import com.google.inject.Injector;
 import com.personal.guicetutorial.service.CheckoutService;
 
 public class MainClass {
-    public  static void main(String args[])
+    public  static void main(String args[]) {
 
         Injector guice = Guice.createInjector();
         CheckoutService service = guice.getInstance(CheckoutService.class);
 
-        service.checkout();
-
+        service.checkout(100);
+    }
 }

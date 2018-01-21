@@ -5,5 +5,5 @@ import com.google.inject.ImplementedBy;
 @ImplementedBy(EarlyBirdDiscount.class)
 public interface Discountable {
 
-    void double getDiscount();
+     double getDiscount();
 }
