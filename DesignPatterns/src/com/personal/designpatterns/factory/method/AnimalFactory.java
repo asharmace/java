@@ -1,5 +1,7 @@
 package com.personal.designpatterns.factory.method;
 
+import com.personal.designpatterns.factory.method.exception.WrongAnimalType;
+
 public class AnimalFactory {
 
     private static final String DOG = "dog";
